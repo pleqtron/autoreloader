@@ -1,4 +1,5 @@
 {
 	"port": 4444,
-	"watchdir": "/Users/xyz/watchdir/"
+	"watchdir": "/path/to/watch",
+	"delay": 0
 }

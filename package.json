@@ -9,7 +9,7 @@
     "development": "webpack --watch ./src/autoreloader.js --output ./assets/autoreloader.min.js"
   },
   "author": "Patrick Heitland",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "dependencies": {
     "express": "^4.16.4",
     "log-timestamp": "^0.2.1",

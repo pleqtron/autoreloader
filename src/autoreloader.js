@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded",function(){
 
 			reloadInitiated = true;
 			setTimeout(function(){
-				window.location.reload();
-			}, 1000);
+				window.location.reload(true);
+			}, 100);
 		});
 	}
 	

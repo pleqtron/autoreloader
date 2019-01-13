@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const config = require('./autoreloader.json');
 const fs = require('fs');
 
+
 if(typeof config.watchdir === 'undefined' || typeof config.port === 'undefined'){
 	console.log("Please check config file.");
 	return;
@@ -31,13 +32,21 @@ io.on('connection', function(socket) {
 	socket.join(uuid);
 })
 
-
 // AutoReload Server
 require('log-timestamp');
+let activeReload = false;
 
 fs.watch(config.watchdir, {
 	recursive: true
 } ,function(eventType, filename){
 	console.log(eventType+" "+filename);
-	io.to(uuid).emit('do reload', eventType+" "+filename);
+	if(config.delay > 0){
+		console.log("delaying reload for "+config.delay+" ms");
+	}
+
+	activeReload = true;
+	setTimeout(function() {
+		activeReload = false;
+		io.to(uuid).emit('do reload', eventType+" "+filename);
+	}, config.delay);
 });
