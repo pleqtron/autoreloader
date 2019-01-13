@@ -1,0 +1,23 @@
+{
+  "name": "autoreloader",
+  "version": "1.0.0",
+  "description": "Simple autoreloader for web devs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack ./src/autoreloader.js --output ./assets/autoreloader.min.js",
+    "development": "webpack --watch ./src/autoreloader.js --output ./assets/autoreloader.min.js"
+  },
+  "author": "Patrick Heitland",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "log-timestamp": "^0.2.1",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  }
+}
