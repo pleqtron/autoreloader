@@ -40,13 +40,17 @@ fs.watch(config.watchdir, {
 	recursive: true
 } ,function(eventType, filename){
 	console.log(eventType+" "+filename);
-	if(config.delay > 0){
-		console.log("delaying reload for "+config.delay+" ms");
-	}
+	if(activeReload){
+		console.log("reload still pending");
+	}else{
+		if(config.delay > 0){
+			console.log("delaying reload for "+config.delay+" ms");
+		}
 
-	activeReload = true;
-	setTimeout(function() {
-		activeReload = false;
-		io.to(uuid).emit('do reload', eventType+" "+filename);
-	}, config.delay);
+		activeReload = true;
+		setTimeout(function() {
+			activeReload = false;
+			io.to(uuid).emit('do reload', eventType+" "+filename);
+		}, config.delay);
+	}
 });
